@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        createStudentObjects();
+//        createStudentObjects();
         setContentView(R.layout.student_summary);
 
         root = findViewById(R.id.student_summary);
 
-        ArrayList<Student> studentList = StudentDB.getInstance().getStudents();
+//        ArrayList<Student> studentList = StudentDB.getInstance().getStudents();
+        ArrayList<Student> studentList = new StudentDB(this).retrieveStudentObjects();
         for (int i=0; i<studentList.size(); i++) {
             Student s = studentList.get(i);
             LayoutInflater inflater = LayoutInflater.from(this);
@@ -47,29 +48,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected void createStudentObjects() {
-        Student s1 = new Student("Oscar", "Cheung", 333);
-        ArrayList<CourseEnrollment> courses = new ArrayList<CourseEnrollment>();
-        courses.add(new CourseEnrollment("CPSC349" , "A"));
-        courses.add(new CourseEnrollment("CPSC411", "B"));
-        courses.add(new CourseEnrollment("CPSC474", "C"));
-        s1.setCourses(courses);
-
-        Student s2 = new Student("Kobe", "Bryant", 1);
-        courses = new ArrayList<CourseEnrollment>();
-        courses.add(new CourseEnrollment("CPSC301", "A"));
-        s2.setCourses(courses);
-
-        Student s3 = new Student("Lebron", "James", 2);
-        courses = new ArrayList<CourseEnrollment>();
-        courses.add(new CourseEnrollment("CPSC201", "A"));
-        s3.setCourses(courses);
-
-        ArrayList<Student>studentList = new ArrayList<>();
-        studentList.add(s1);
-        studentList.add(s2);
-        studentList.add(s3);
-
-        StudentDB.getInstance().setStudents(studentList);
-    }
+//    protected void createStudentObjects() {
+//        Student s1 = new Student("Oscar", "Cheung", 333);
+//        ArrayList<CourseEnrollment> courses = new ArrayList<CourseEnrollment>();
+//        courses.add(new CourseEnrollment("CPSC349" , "A"));
+//        courses.add(new CourseEnrollment("CPSC411", "B"));
+//        courses.add(new CourseEnrollment("CPSC474", "C"));
+//        s1.setCourses(courses);
+//
+//        Student s2 = new Student("Kobe", "Bryant", 1);
+//        courses = new ArrayList<CourseEnrollment>();
+//        courses.add(new CourseEnrollment("CPSC301", "A"));
+//        s2.setCourses(courses);
+//
+//        Student s3 = new Student("Lebron", "James", 2);
+//        courses = new ArrayList<CourseEnrollment>();
+//        courses.add(new CourseEnrollment("CPSC201", "A"));
+//        s3.setCourses(courses);
+//
+//        ArrayList<Student>studentList = new ArrayList<>();
+//        studentList.add(s1);
+//        studentList.add(s2);
+//        studentList.add(s3);
+//
+//        StudentDB.getInstance().setStudents(studentList);
+//    }
 }

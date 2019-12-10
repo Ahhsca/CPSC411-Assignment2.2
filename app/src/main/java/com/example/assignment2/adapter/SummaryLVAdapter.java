@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.content.Context;
 
 import com.example.assignment2.R;
 import com.example.assignment2.StudentDetailsActivity;
@@ -13,16 +14,32 @@ import com.example.assignment2.model.Student;
 import com.example.assignment2.model.StudentDB;
 
 public class SummaryLVAdapter extends BaseAdapter {
+//    @Override
+//    public int getCount() {
+//        return StudentDB.getInstance().getStudents().size();
+//    }
+//
+//    @Override
+//    public Object getItem(int position) {
+//        return StudentDB.getInstance().getStudents().get(position);
+//    }
+
+    public StudentDB mStudentDB;
+
+    public SummaryLVAdapter(Context context) {
+        mStudentDB = new StudentDB(context);
+        mStudentDB.createSampleStudentObjs();
+        mStudentDB.retrieveStudentObjects();
+    }
+
     @Override
     public int getCount() {
-        return StudentDB.getInstance().getStudents().size();
+        return mStudentDB.getStudents().size();
     }
-
     @Override
     public Object getItem(int position) {
-        return StudentDB.getInstance().getStudents().get(position);
+        return mStudentDB.getStudents().get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -37,7 +54,7 @@ public class SummaryLVAdapter extends BaseAdapter {
             row_view = inflater.inflate(R.layout.student_row, viewGroup, false);
         } else row_view = view;
 
-        Student s = StudentDB.getInstance().getStudents().get(i);
+        final Student s = mStudentDB.retrieveStudentObjects().get(i);
 
         TextView firstNameView = (TextView) row_view.findViewById(R.id.first_name);
         firstNameView.setText(s.getFirstName());

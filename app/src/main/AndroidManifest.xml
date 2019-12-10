@@ -12,11 +12,6 @@
         <activity android:name=".StudentDetailsActivity"
             android:parentActivityName=".SummaryLVActivity">
         </activity>
-        <activity android:name=".addStudent" android:parentActivityName=".SummaryLVActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SummaryLVActivity" />
-        </activity>
         <activity android:name=".SummaryLVActivity"
             android:launchMode="singleTop">
             <intent-filter>
